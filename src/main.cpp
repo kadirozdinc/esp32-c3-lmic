@@ -35,6 +35,7 @@
 #include <hal/hal.h>
 #include <SPI.h>
 
+
 bool GOTO_DEEPSLEEP = false;
 
 static const u1_t PROGMEM APPEUI[8]={ 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13 };
@@ -64,7 +65,7 @@ RTC_DATA_ATTR lmic_t RTC_LMIC;
 const lmic_pinmap lmic_pins = {
     .nss = 7,
     .rxtx = LMIC_UNUSED_PIN,
-    .rst = 8,
+    .rst = 3,
     .dio = {1, 2, LMIC_UNUSED_PIN},
 };
 
@@ -411,7 +412,8 @@ void GoDeepSleep()
 void setup() {
 
 Serial.begin(115200);
-
+    //WiFi.mode(WIFI_OFF);
+    setCpuFrequencyMhz(10);
     Serial.println(F("Starting DeepSleep test"));
     PrintLMICVersion();
 
