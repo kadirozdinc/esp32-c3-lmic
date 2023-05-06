@@ -68,20 +68,28 @@ void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 static const u1_t PROGMEM APPKEY[16] = { 0x47, 0x52, 0x1E, 0x11, 0x57, 0x30, 0x93, 0xC2, 0x37, 0xC7, 0x33, 0x39, 0x83, 0xDD, 0x47, 0x5C };
 void os_getDevKey (u1_t* buf) {  memcpy_P(buf, APPKEY, 16);}
 
-static uint8_t mydata[] = "test";
+static uint8_t mydata[] = "Hello World";
 static osjob_t sendjob;
 
 // Schedule TX every this many seconds (might become longer due to duty
 // cycle limitations).
 const unsigned TX_INTERVAL = 60;
 
-// Pin mapping
+// Pin mapping FOR DEMO
 const lmic_pinmap lmic_pins = {
     .nss = 7,
     .rxtx = LMIC_UNUSED_PIN,
     .rst = 3,
     .dio = {1, 2, LMIC_UNUSED_PIN},
 };
+
+// // Pin mapping
+// const lmic_pinmap lmic_pins = {
+//     .nss = 7,
+//     .rxtx = LMIC_UNUSED_PIN,
+//     .rst = 8,
+//     .dio = {1, 2, LMIC_UNUSED_PIN},
+// };
 
 void printHex2(unsigned v) {
     v &= 0xff;
@@ -228,13 +236,6 @@ void onEvent (ev_t ev) {
 void setup() {
     Serial.begin(115200);
     Serial.println(F("Starting"));
-
-    #ifdef VCC_ENABLE
-    // For Pinoccio Scout boards
-    pinMode(VCC_ENABLE, OUTPUT);
-    digitalWrite(VCC_ENABLE, HIGH);
-    delay(1000);
-    #endif
 
     // LMIC init
     os_init();
