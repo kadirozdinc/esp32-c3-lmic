@@ -35,6 +35,7 @@
 #include <hal/hal.h>
 #include <SPI.h>
 
+//#define LMIC_DEBUG_LEVEL 1
 
 bool GOTO_DEEPSLEEP = false;
 
@@ -61,11 +62,19 @@ const unsigned TX_INTERVAL = 60;
 // Saves the LMIC structure during DeepSleep
 RTC_DATA_ATTR lmic_t RTC_LMIC;
 
+// // Pin mapping FOR DEMO
+// const lmic_pinmap lmic_pins = {
+//     .nss = 7,
+//     .rxtx = LMIC_UNUSED_PIN,
+//     .rst = 3,
+//     .dio = {1, 2, LMIC_UNUSED_PIN},
+// };
+
 // Pin mapping
 const lmic_pinmap lmic_pins = {
     .nss = 7,
     .rxtx = LMIC_UNUSED_PIN,
-    .rst = 3,
+    .rst = 8,
     .dio = {1, 2, LMIC_UNUSED_PIN},
 };
 
