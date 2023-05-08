@@ -75,21 +75,21 @@ static osjob_t sendjob;
 // cycle limitations).
 const unsigned TX_INTERVAL = 60;
 
-// Pin mapping FOR DEMO
-const lmic_pinmap lmic_pins = {
-    .nss = 7,
-    .rxtx = LMIC_UNUSED_PIN,
-    .rst = 3,
-    .dio = {1, 2, LMIC_UNUSED_PIN},
-};
-
-// // Pin mapping
+// // Pin mapping FOR DEMO
 // const lmic_pinmap lmic_pins = {
 //     .nss = 7,
 //     .rxtx = LMIC_UNUSED_PIN,
-//     .rst = 8,
+//     .rst = 3,
 //     .dio = {1, 2, LMIC_UNUSED_PIN},
 // };
+
+// Pin mapping
+const lmic_pinmap lmic_pins = {
+    .nss = 7,
+    .rxtx = LMIC_UNUSED_PIN,
+    .rst = 8,
+    .dio = {1, 2, LMIC_UNUSED_PIN},
+};
 
 void printHex2(unsigned v) {
     v &= 0xff;
