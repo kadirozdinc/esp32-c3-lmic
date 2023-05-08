@@ -186,21 +186,11 @@ void onEvent (ev_t ev) {
               for (int i = 0; i < LMIC.dataLen; i++) {
           if (LMIC.frame[LMIC.dataBeg + i] < 0x10) {
             Serial.print(F("0"));
-        }
-        Serial.print(LMIC.frame[LMIC.dataBeg + i], HEX);
-    }
-     Serial.println();
             }
-
-            // //------ Added ----------------
-            //   if (LMIC.dataLen == 1) {
-            //     uint8_t result = LMIC.frame[LMIC.dataBeg + 0];
-            //     Serial.println(result);                                        
-            //   }
-            //  Serial.println();
-            //  //-----------------------------
-
-
+            Serial.print(LMIC.frame[LMIC.dataBeg + i], HEX);
+            }
+            Serial.println();
+            }
             // Schedule next transmission
             os_setTimedCallback(&sendjob, os_getTime()+sec2osticks(TX_INTERVAL), do_send);
             break;
